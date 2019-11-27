@@ -11,7 +11,7 @@ function capitalize(string) {
 }
 
 function camelCase(string) {
-    return capitalize(string).replace(/\s+/g, '');
+    return capitalize(string).replace(/_/, '').replace(/\s+/g, '');
 }
 
 function snake_case(string) {
@@ -72,6 +72,10 @@ function yoda(string) {
     }
     return reverseString;
 }
+
+
+
+console.log(camelCase('ToggleCase is_the coolest'));
 
 const prairie = {
     animal: {
