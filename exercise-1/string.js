@@ -16,7 +16,7 @@ function camelCase(string) {
 
 function snake_case(string) {
     if (typeof string !== 'string' || string.length === 0) return '';
-    return string.replace(/[A-Z]/g, function(newString) {
+    return string.replace(/[A-Z\s+]/g, function(newString) {
         return '_' + newString.toLowerCase()
     }).replace(/^_/, ''); //chaîne commençant par _
 }
@@ -74,9 +74,6 @@ function yoda(string) {
 }
 
 
-
-console.log(camelCase('ToggleCase is_the coolest'));
-
 const prairie = {
     animal: {
         type: {
@@ -84,4 +81,3 @@ const prairie = {
         }
     }
 }
-console.log(prop_access(prairie, 'animal.type.name.sexe'));
