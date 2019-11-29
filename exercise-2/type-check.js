@@ -17,10 +17,11 @@ function type_check_v1(val, type) {
 function type_check_v2 (val, param) {
     if (param.hasOwnProperty('type') && param.hasOwnProperty('value') === false) {
         return type_check_v1(val, param.type);
+    } else if ((param.hasOwnProperty('type') && typeof val === param.type
+        && param.hasOwnProperty('value') && val === param.value) || (param.enum.includes(val))) {
+        return true;
     }
-
-    if (param.hasOwnProperty('type') && typeof val === param.type
-        && param.hasOwnProperty('value') && val === param.value) {
-            return true;
-    }
+    return false;
 }
+
+console.log(type_check_v2(4, {enum: ["foo", "bar", 3]}));
