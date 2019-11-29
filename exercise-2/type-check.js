@@ -15,7 +15,7 @@ function type_check_v1(val, type) {
 }
 
 function type_check_v2 (val, param) {
-    if (param.hasOwnProperty('type')) {
+    if (param.hasOwnProperty('type') && param.hasOwnProperty('value') === false) {
         return type_check_v1(val, param.type);
     }
 
@@ -24,5 +24,3 @@ function type_check_v2 (val, param) {
             return true;
     }
 }
-
-console.log(type_check_v2('test', {type: 'string', value: 'test'}))
