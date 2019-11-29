@@ -11,9 +11,10 @@ function capitalize(string) {
 }
 
 function camelCase(string) {
-    const _ = string.replace(/([_][a-z])/g, (group) => group.toUpperCase().replace('_', ''));
-
-    // return string.split(' ').replace(/\s+/g, '');
+    if (typeof string !== 'string' || string.length === 0) return '';
+    return capitalize(string.replace(/_/g, ' ').replace(/[^a-zA-Z0-9 ]/g, ' ')).split(' ').map(function(word, index) {
+        return word;
+    }).join(' ');
 }
 
 function snake_case(string) {
