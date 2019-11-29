@@ -11,12 +11,18 @@ function type_check_v1(val, type) {
     } else if (type === 'null') {
         return val === null;
     }
-
     return typeof val === type;
 }
 
-console.log(type_check_v1(1, 'number'));
-console.log(type_check_v1(undefined, 'undefined'));
-console.log(type_check_v1('string', 'string'));
-console.log(type_check_v1(type_check_v1, 'function'));
-console.log(type_check_v1(null, 'object'));
+function type_check_v2 (val, param) {
+    if (param.hasOwnProperty('type')) {
+        return type_check_v1(val, param.type);
+    }
+
+    if (param.hasOwnProperty('type') && typeof val === param.type
+        && param.hasOwnProperty('value') && val === param.value) {
+            return true;
+    }
+}
+
+console.log(type_check_v2('test', {type: 'string', value: 'test'}))
