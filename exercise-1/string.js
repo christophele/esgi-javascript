@@ -10,6 +10,16 @@ function capitalize(string) {
     }).join(' ');
 }
 
+function capitalize(string) {
+    if (typeof string !== "string" || string.length === 0) return "";
+    let arr = string.toLowerCase().split(' ');
+    for(let i = 0; i < arr.length; i++) {
+      arr[i] = ucfirst(arr[i]);
+    }
+  
+    return arr.join(' ');
+}
+
 function camelCase(string) {
     if (typeof string !== 'string' || string.length === 0) return '';
     return capitalize(string.replace(/_/g, ' ').replace(/[^a-zA-Z0-9 ]/g, ' ')).split(' ').map(function(word, index) {
@@ -53,11 +63,22 @@ function leet(string) {
     })
 }
 
-function prop_access(object, path) {
-    const attr = path.split('.').reduce((object ,i) => object[i], object);
-    if (path === '' || path === null) return object;
-    if (attr === undefined) return `${path} not exist`;
-    return attr;
+function prop_access(object, str) {
+    if (str === "" || str === null || typeof obj !== "object") {
+        return object;
+    }
+    const access = str.trim().split('.');
+    const temp = object;
+    for (let i = 0; access.length; i++) {
+        if (i == access.length) {
+            return temp;
+        }
+        if (!Object.prototype.hasOwnProperty.call(temp, access[i])) {
+            console.log(str + " not exist");
+            return false;
+        }
+        temp = temp[access[i]];
+    }
 }
 
 function verlan(string) {
